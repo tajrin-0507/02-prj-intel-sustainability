@@ -1,2 +1,244 @@
-/* Add your CSS here */
-/* Code */
+/* Reusable colors keep the page design consistent. */
+:root {
+  --intel-blue: #0068b5;
+  --deep-blue: #071d49;
+  --cyan: #4c656c;
+  --cyan-dark: #00a3c4;
+  --ink: #172b4d;
+  --mist: #eef7fb;
+  --hero-text: #dceeff;
+  --muted: #47627a;
+  --white: #ffffff;
+  --lime: #b5cc18;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--mist);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* The hero introduces the page with a full-width color background. */
+.hero {
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  border-bottom: 10px solid var(--cyan);
+  border-top: 10px solid var(--deep-blue);
+  padding: 72px clamp(24px, 8vw, 120px);
+  color: var(--white);
+  background: linear-gradient(135deg, var(--deep-blue) 0%, var(--intel-blue) 58%, var(--cyan) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  width: 420px;
+  height: 420px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  right: -100px;
+  bottom: -170px;
+}
+
+.hero-content {
+  max-width: 760px;
+  position: relative;
+  z-index: 1;
+}
+
+.intel-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 54px;
+  filter: brightness(0) invert(1);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--lime);
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  line-height: 1.1;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-weight: bold;
+}
+
+h1 {
+  max-width: 700px;
+  margin-bottom: 24px;
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+}
+
+.hero-description {
+  max-width: 570px;
+  margin: 0;
+  color: var(--hero-text);
+  font-size: 1.15rem;
+}
+
+.timeline-section {
+  padding: 84px clamp(24px, 6vw, 96px) 32px;
+}
+
+.section-heading {
+  max-width: 650px;
+  margin-bottom: 48px;
+}
+
+.section-heading h2 {
+  margin-bottom: 12px;
+  color: var(--deep-blue);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.section-heading>p:last-child {
+  margin: 0;
+}
+
+/* Cards sit in one row on larger screens and snap into place while scrolling. */
+.timeline {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 26px 8px 38px;
+  scroll-padding-inline: 8px;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each card keeps the same width so the horizontal timeline stays predictable. */
+.timeline-card {
+  flex: 0 0 290px;
+  min-height: 410px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border-top: 5px solid var(--intel-blue);
+  background: var(--white);
+  box-shadow: 0 12px 28px rgba(7, 29, 73, 0.1);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform;
+}
+
+/* Lift the card and reveal its details when a user points to or focuses it. */
+.timeline-card:hover,
+.timeline-card:focus-within {
+  transform: translateY(-10px) rotate(0.5deg);
+  box-shadow: 0 20px 38px rgba(7, 29, 73, 0.2);
+}
+
+.timeline-card h2 {
+  margin-bottom: 10px;
+  color: var(--intel-blue);
+  font-size: 2.5rem;
+}
+
+.timeline-card h3 {
+  min-height: 44px;
+  margin-bottom: 18px;
+  color: var(--deep-blue);
+  font-size: 1.25rem;
+}
+
+/* The image zoom adds movement without changing the card's size. */
+.timeline-card img {
+  width: 100%;
+  height: 135px;
+  object-fit: cover;
+  margin-bottom: 16px;
+  transition: transform 220ms ease;
+}
+
+.timeline-card:hover img,
+.timeline-card:focus-within img {
+  transform: scale(1.04);
+}
+
+.card-detail {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  opacity: 0.25;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.timeline-card:hover .card-detail,
+.timeline-card:focus-within .card-detail {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-hint {
+  margin: 0;
+  padding: 16px 24px 40px;
+  color: var(--cyan);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.timeline-hint span {
+  margin: 0 8px;
+  color: var(--cyan);
+  font-size: 1.2rem;
+}
+
+@media (max-width: 700px) {
+
+  /* On small screens, stacked cards are easier to read than horizontal scrolling. */
+  .hero {
+    min-height: 500px;
+    padding: 48px 24px;
+  }
+
+  .intel-logo {
+    width: 120px;
+    margin-bottom: 42px;
+  }
+
+  .timeline-section {
+    padding-top: 60px;
+  }
+
+  .timeline {
+    display: block;
+    padding: 0 4px 10px;
+  }
+
+  .timeline-card {
+    width: 100%;
+    min-height: 0;
+    margin-bottom: 22px;
+  }
+
+  .card-detail,
+  .timeline-card:hover .card-detail,
+  .timeline-card:focus-within .card-detail {
+    opacity: 1;
+    transform: none;
+  }
+}
