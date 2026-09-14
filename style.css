@@ -2,8 +2,8 @@
 :root {
   --intel-blue: #0068b5;
   --deep-blue: #071d49;
-  --cyan: #4c656c;
-  --cyan-dark: #00a3c4;
+  --cyan: #00c8ff;
+  --cyan-dark: #6c888e;
   --ink: #172b4d;
   --mist: #eef7fb;
   --hero-text: #dceeff;
@@ -196,14 +196,14 @@ h1 {
 .timeline-hint {
   margin: 0;
   padding: 16px 24px 40px;
-  color: var(--cyan);
+  color: var(--cyan-dark);
   text-align: center;
   font-size: 0.9rem;
 }
 
 .timeline-hint span {
   margin: 0 8px;
-  color: var(--cyan);
+  color: var(--cyan-dark);
   font-size: 1.2rem;
 }
 
